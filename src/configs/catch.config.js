@@ -1,5 +1,5 @@
 class CatchLoader {
-    static init(app) {
+    init(app) {
         app.use((req, res, next) => {
             const err = new Error('Endpoint Not Found')
             err.name = "Not Found";
@@ -19,4 +19,4 @@ class CatchLoader {
     }
 }
 
-export default CatchLoader;
+export default new CatchLoader;

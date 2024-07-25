@@ -1,9 +1,15 @@
 import { Router } from 'express';
 import passport from 'passport';
+import AuthControler from '../controllers/auth.controller.js'
+
 const { authenticate } = passport;
 
 const router = Router();
 
+router.get('/test', AuthControler.test);
+router.get('/', (req, res) => {
+    res.json("hello all members, my name is JPatrick!, this is post auth");
+});
 router.get('/', (req, res) => {
     res.json("hello all members, my name is JPatrick!, this is post auth");
 });

@@ -4,7 +4,7 @@ import AuthRoute from '../routes/auth.routes.js';
 const VERSION = process.env.VERSION || 'v1';
 
 class RoutesLoader {
-    static init(app) {
+    init(app) {
         app.use(`/api/${VERSION}/auth`, AuthRoute);
         // app.use(`/api/${VERSION}/user`, UserRoute);
         // app.use(`/api/${version}/movies`, movieRouter);
@@ -18,4 +18,4 @@ class RoutesLoader {
     }
 }
 
-export default RoutesLoader;
+export default new RoutesLoader;
