@@ -1,16 +1,16 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express, { json } from 'express';
 import { createServer } from 'http';
-import { config } from 'dotenv';
 import helmet from 'helmet';
 import logger from 'morgan';
 import cors from 'cors';
 import passport from 'passport';
 
-
 import CatchLoader from './src/configs/catch.config.js';
 import RoutesLoader from './src/configs/router.config.js';
 
-config()
 const PORT = process.env.PORT || 3002;
 const VERSION = process.env.VERSION || 'v1';
 

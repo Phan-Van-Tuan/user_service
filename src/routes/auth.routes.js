@@ -6,7 +6,8 @@ const { authenticate } = passport;
 
 const router = Router();
 
-router.get('/test', AuthControler.test);
+router.get('/test', AuthControler.fetchUsers);
+router.post('/createUser', AuthControler.createUser);
 router.get('/', (req, res) => {
     res.json("hello all members, my name is JPatrick!, this is post auth");
 });
