@@ -1,12 +1,13 @@
-// import UserRoute from '../routes/user.router.js';
+import PaymentRoute from '../routes/payment.route.js';
 import AuthRoute from '../routes/auth.routes.js';
+import config from './variable.config.js';
 
-const VERSION = process.env.VERSION || 'v1';
+const version = config.VERSION;
 
 class RoutesLoader {
     init(app) {
-        app.use(`/api/${VERSION}/auth`, AuthRoute);
-        // app.use(`/api/${VERSION}/user`, UserRoute);
+        app.use(`/api/${version}/auth`, AuthRoute);
+        app.use(`/api/${version}/payment`, PaymentRoute);
         // app.use(`/api/${version}/movies`, movieRouter);
         // app.use(`/api/${version}/roles`, roleRouter);
         // app.use(`/api/${version}/theaters`, theaterRouter);

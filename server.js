@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import express, { json } from 'express';
 import { createServer } from 'http';
 import helmet from 'helmet';
@@ -10,9 +7,7 @@ import passport from 'passport';
 
 import CatchLoader from './src/configs/catch.config.js';
 import RoutesLoader from './src/configs/router.config.js';
-
-const PORT = process.env.PORT || 3002;
-const VERSION = process.env.VERSION || 'v1';
+import config from './src/configs/variable.config.js';
 
 var app = express();
 app.use(json());
@@ -26,6 +21,6 @@ CatchLoader.init(app);
 
 const server = createServer(app);
 
-server.listen(PORT, () => {
-    console.log(`👌 Server running at http://localhost:${PORT}/api/${VERSION}`);
+server.listen(config.PORT, () => {
+    console.log(`👌 Server running at http://localhost:${config.PORT}/api/${config.VERSION}`);
 })
