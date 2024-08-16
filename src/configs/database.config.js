@@ -1,4 +1,7 @@
-import mysql from 'mysql2/promise';
+import mysql from "mysql2/promise";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 // Environment variables for database configuration
 const DB_HOST = process.env.DB_HOST;
@@ -6,12 +9,13 @@ const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_DATABASE = process.env.DB_DATABASE;
 
+console.log(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 // Configuration object for the database connection
 const config = {
     host: DB_HOST,
     user: DB_USER,
     password: DB_PASSWORD,
-    database: "financial_management",
+    database: DB_DATABASE,
 };
 
 // Function to create the table if it does not exist
@@ -19,7 +23,9 @@ async function createTableIfNotExists(connection) {
     const createUserTableSQL = `
         CREATE TABLE IF NOT EXISTS user (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
+            firstName VARCHAR(255) NOT NULL,
+            lastName VARCHAR(255) NOT NULL,
+            userName VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -42,9 +48,7 @@ async function initializeDatabase() {
         throw err;
     }
 }
-
 const connection = await initializeDatabase();
 
+
 export default connection;
-
-

@@ -1,13 +1,15 @@
 import { Router } from 'express';
 import passport from 'passport';
-import AuthControler from '../controllers/auth.controller.js'
+import Signup from '../controllers/user.controller.js';
 
 const { authenticate } = passport;
 
 const router = Router();
 
-router.get('/test', AuthControler.fetchUsers);
-router.post('/createUser', AuthControler.createUser);
+router.post('/signup', Signup.signUp);
+router.post('/login', Signup.login);
+router.post('/verify/:confimationToken', Signup.verifyEmail );
+
 router.get('/', (req, res) => {
     res.json("hello all members, my name is JPatrick!, this is post auth");
 });

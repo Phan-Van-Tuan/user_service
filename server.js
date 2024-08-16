@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import logger from 'morgan';
 import cors from 'cors';
 import passport from 'passport';
+import cookie from 'cookie-parser';
 
 import CatchLoader from './src/configs/catch.config.js';
 import RoutesLoader from './src/configs/router.config.js';
@@ -16,10 +17,11 @@ const VERSION = process.env.VERSION || 'v1';
 
 var app = express();
 app.use(json());
-app.use(logger('dev'));
-app.use(helmet());
+app.use(logger('dev')); 
+app.use(helmet()); // Helmet helps secure Express apps by setting various HTTP headers.
 app.use(cors());
 app.use(passport.initialize());
+app.use(cookie());
 
 RoutesLoader.init(app);
 CatchLoader.init(app);
