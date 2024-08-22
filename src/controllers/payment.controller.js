@@ -2,11 +2,21 @@ import User from '../models/user.model.js';
 import crypto from 'crypto'
 import { URLSearchParams } from 'url';
 // import axios from 'axios'
+import QRCode from 'qrcode'
 
 import Payment from '../models/payment.model.js';
 import config from '../configs/variable.config.js';
 
 class PaymentControler {
+    async generateQR(req, res) {
+        const { text } = req.body
+        try {
+            res.json(await QRCode.toString(text))
+        } catch (err) {
+            res.json(err)
+        }
+    }
+
     async getAll(req, res) {
         let data = await Payment.getAll()
         res.json({ status: 'success', message: 'get all payments', data: data });
@@ -14,6 +24,7 @@ class PaymentControler {
 
     createPayment(req, res) {
         const { bankCode, amount } = req.body;
+        // return res.json("okkkkk");
 
         let orderId = `${Date.now()}`
         let vnp_Params = {};
@@ -41,7 +52,7 @@ class PaymentControler {
         const signed = hmac.update(Buffer.from(signData, 'utf-8')).digest('hex');
         vnp_Params['vnp_SecureHash'] = signed;
 
-        const paymentUrl = `${vnp_Url}?${new URLSearchParams(vnp_Params).toString()}`;
+        const paymentUrl = `${config.vnp_Url}?${new URLSearchParams(vnp_Params).toString()}`;
 
         res.json({ status: 'success', message: 'Created payment url', data: paymentUrl });
     }

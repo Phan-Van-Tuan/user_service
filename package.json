@@ -1,5 +1,5 @@
 {
-  "name": "financial_management_server",
+  "name": "user_service",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -22,6 +22,7 @@
     "mysql2": "^3.10.3",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "qrcode": "^1.5.3",
     "url": "^0.11.4"
   },
   "devDependencies": {
